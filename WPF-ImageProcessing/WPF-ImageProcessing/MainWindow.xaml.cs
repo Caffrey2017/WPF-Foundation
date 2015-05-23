@@ -26,6 +26,7 @@ namespace WPF_ImageProcessing
     {
         OpenFileDialog open;
         BitmapImage bitmap;
+        WriteableBitmap wBitmap;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace WPF_ImageProcessing
             open.ShowDialog();*/
             string location = AppDomain.CurrentDomain.BaseDirectory + "/images/test.jpg"; //open.FileName;
             bitmap = new BitmapImage(new Uri(location));
+            wBitmap = new WriteableBitmap(bitmap);
             displayImage.Source = bitmap;
         }
 
@@ -52,6 +54,7 @@ namespace WPF_ImageProcessing
             open.ShowDialog();
             string location = open.FileName;
             bitmap = new BitmapImage(new Uri(location));
+            wBitmap = new WriteableBitmap(bitmap);
             displayImage.Source = bitmap;
         }
 
@@ -62,18 +65,46 @@ namespace WPF_ImageProcessing
 
         private void GrayImage(object sender, RoutedEventArgs e)
         {
-            ByteToBitmapSourceConverter converter = new ByteToBitmapSourceConverter();
-            byte[] imageData = (byte[])converter.ConvertBack(bitmap,typeof(BitmapImage),0,System.Globalization.CultureInfo.CurrentCulture);
+            var width = wBitmap.PixelWidth; //Picture Pixel Width [500] * 500
+            var height = wBitmap.PixelHeight; //Picture Pixel Height 500 * [500]
+            var bytesPerPixel = ((wBitmap.Format.BitsPerPixel + 7) / 8);
+            var stride = width * ((wBitmap.Format.BitsPerPixel + 7) / 8); //Picture Pixel 4 bytes = (32 + 7)/8  -> width * bytes = stride = one horizontal line bytes
+            var bitmapData = new byte[height * stride];
+            wBitmap.CopyPixels(bitmapData, stride, 0);
 
+            byte[] pixel = bitmapData;
 
-            for(int i = 0;i < imageData.Length;i++)
+            //wBitmap.CopyPixels(pixel, stride, 0);
+
+            Parallel.For(0, height, y =>
             {
-                if(i % 5 > 2)
-                imageData[i] = 255;
-            }
+                int x;
+                /*for (x = 0; x < stride; x++)
+                {
+                    pixel[x + y * stride] = (byte)(255 - pixel[x + y * stride]);
+                }*/
+                for (x = 0; x < stride; x += bytesPerPixel)
+                {
+                    //contrast
+                    /*pixel[x + y * stride] = (byte)(255 - pixel[x + y * stride]);
+                    pixel[x + y * stride + 1] = (byte)(255 - pixel[x + y * stride + 1]);
+                    pixel[x + y * stride + 2] = (byte)(255 - pixel[x + y * stride + 2]);
+                    pixel[x + y * stride + 3] = (byte)(255 - pixel[x + y * stride + 3]);*/
+                    //gray
+                    int R = pixel[x + y * stride];
+                    int G = pixel[x + y * stride + 1];
+                    int B = pixel[x + y * stride + 2];
+                    int a = pixel[x + y * stride + 3];
+                    int value = (R * 299 + G * 587 + B * 114 + 500) / 1000;
+                    pixel[x + y * stride] = (byte)(value);
+                    pixel[x + y * stride + 1] = (byte)(value);
+                    pixel[x + y * stride + 2] = (byte)(value);
+                    pixel[x + y * stride + 3] = 0xff;
+                }
+            });
 
-            bitmap = converter.ConvertBack(imageData,typeof(byte[]),0,System.Globalization.CultureInfo.CurrentCulture) as BitmapImage;
-            displayImage.Source = bitmap;
+            wBitmap.WritePixels(new Int32Rect(0, 0, width, height), pixel, stride, 0);
+            displayImage.Source = wBitmap;
         }
 
         private void InvertedImage(object sender, RoutedEventArgs e)
@@ -81,5 +112,6 @@ namespace WPF_ImageProcessing
 
 
         }
+        //http://lbt95.pixnet.net/blog/post/33941436-%5Bc%23%5D-wpf%E7%9A%84%E9%AB%98%E9%80%9F%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86
     }
 }

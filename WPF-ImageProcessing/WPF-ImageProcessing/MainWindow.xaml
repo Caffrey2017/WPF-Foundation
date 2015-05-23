@@ -1,0 +1,18 @@
+﻿<Window x:Name="main" x:Class="WPF_ImageProcessing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <DockPanel >
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Open" Click="OpenImage" />
+                <Button Content="Save" Click="SaveImage"/>
+            </ToolBar>
+            <ToolBar>
+                <Button Content="Gray" Click="GrayImage" />
+                <Button Content="Inverted" Click="InvertedImage"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Image  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Name="displayImage"></Image>
+    </DockPanel>
+</Window>

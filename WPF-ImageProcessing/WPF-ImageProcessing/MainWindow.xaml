@@ -12,6 +12,7 @@
                 <Button Content="Gray" Click="GrayImage" />
                 <Button Content="Inverted" Click="InvertedImage"/>
                 <Button Content="Medium" Click="MediumImage"/>
+                <Button Content="MergeMode" Click="MergeImage"/>
             </ToolBar>
         </ToolBarTray>
         <Image  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Name="displayImage"></Image>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="WPF_ImageProcessing.MergeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MergeForm" Height="500" Width="500">
+    <DockPanel >
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Foreground" Click="ForegroundLoadImage"/>
+                <Button Content="Background" Click="BackgroundLoadImage"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Canvas DockPanel.Dock="Bottom" HorizontalAlignment="Left" Name="backImage">
+            <Canvas DockPanel.Dock="Bottom" HorizontalAlignment="Left" Name="foreImage">
+            </Canvas>
+        </Canvas>
+    </DockPanel>
+</Window>

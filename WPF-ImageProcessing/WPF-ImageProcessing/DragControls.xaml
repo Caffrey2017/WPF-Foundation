@@ -1,0 +1,12 @@
+﻿<Window x:Class="WPF_ImageProcessing.DragControls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DragControls" Height="300" Width="300">
+    <Grid>
+        <Canvas HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Background="#FFFF0101"/>
+        <Canvas HorizontalAlignment="Left" Height="100" Margin="161,10,0,0" VerticalAlignment="Top" Width="100" Background="#FF4D4D4D">
+            <Label x:Name="ControlLabel" Canvas.Top="35" Height="55" Background="Yellow" Content="Control" Width="57" Canvas.Left="10" ClipToBounds="True" MouseDown="ControlDown" MouseUp="ControlUp" MouseMove="ControlMove"/>
+        </Canvas>
+
+    </Grid>
+</Window>

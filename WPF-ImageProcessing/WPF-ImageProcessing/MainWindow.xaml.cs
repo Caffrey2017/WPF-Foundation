@@ -216,6 +216,13 @@ namespace WPF_ImageProcessing
             this.Close();
         }
 
+        private void DragImage(object sender, RoutedEventArgs e)
+        {
+            DragControls drags = new DragControls();
+            drags.Show();
+            this.Close();
+        }
+
 
         //http://lbt95.pixnet.net/blog/post/33941436-%5Bc%23%5D-wpf%E7%9A%84%E9%AB%98%E9%80%9F%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86
     }

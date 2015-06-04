@@ -1,0 +1,27 @@
+﻿<Window x:Class="WPF_ImageProcessing.DrawingWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DrawingWindows" Height="1024" Width="1024" Loaded="LoadWindows">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Width="1024">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Close"/>
+                <MenuItem Header="Save"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="_redo" Header="Redo"/>
+                <MenuItem x:Name="_undo" Header="Undo"/>
+            </MenuItem>
+            <MenuItem Header="Tools">
+                <MenuItem Header="Pencil" Click="DrawByPencil" />
+                <MenuItem Header="Others"/>
+            </MenuItem>
+            <MenuItem Header="Deleveping">
+                <MenuItem Header="Load a Picture" Click="TestingLoadPicture" />
+                <MenuItem Header="Others"/>
+            </MenuItem>
+        </Menu>
+        <Canvas x:Name="_canvas" DockPanel.Dock="Bottom" Background="White" MouseDown="ClickOnCanvas" MouseMove="ClickMoveCanvas" MouseUp="ClickUpCanvas"></Canvas>
+    </DockPanel>
+</Window>

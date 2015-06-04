@@ -1,7 +1,7 @@
 ﻿<Window x:Name="main" x:Class="WPF_ImageProcessing.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="MainWindow" Height="350" Width="550" Loaded="Window_Loaded">
     <DockPanel >
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
@@ -12,10 +12,13 @@
                 <Button Content="Gray" Click="GrayImage" />
                 <Button Content="Inverted" Click="InvertedImage"/>
                 <Button Content="Medium" Click="MediumImage"/>
+            </ToolBar>
+            <ToolBar>
                 <Button Content="MergeMode" Click="MergeImage"/>
                 <Button Content="DragMode" Click="DragImage"/>
+                <Button Content="DrawingMode" Click="DrawngImage"/>
             </ToolBar>
-        </ToolBarTray>
+         </ToolBarTray>
         <Image  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Name="displayImage"></Image>
     </DockPanel>
 </Window>

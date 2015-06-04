@@ -28,7 +28,6 @@ namespace WPF_ImageProcessing
         BitmapImage bitmap;
         WriteableBitmap wBitmap;
 
-        MergeForm mergeForm;
         public MainWindow()
         {
             InitializeComponent();
@@ -211,7 +210,7 @@ namespace WPF_ImageProcessing
 
         private void MergeImage(object sender, RoutedEventArgs e)
         {
-            mergeForm = new MergeForm();
+            MergeForm mergeForm = new MergeForm();
             mergeForm.Show();
             this.Close();
         }
@@ -219,6 +218,13 @@ namespace WPF_ImageProcessing
         private void DragImage(object sender, RoutedEventArgs e)
         {
             DragControls drags = new DragControls();
+            drags.Show();
+            this.Close();
+        }
+
+        private void DrawngImage(object sender, RoutedEventArgs e)
+        {
+            DrawingWindows drags = new DrawingWindows();
             drags.Show();
             this.Close();
         }

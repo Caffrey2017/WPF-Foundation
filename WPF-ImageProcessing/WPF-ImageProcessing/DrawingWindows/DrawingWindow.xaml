@@ -1,10 +1,10 @@
-﻿<Window x:Class="WPF_ImageProcessing.DrawingWindows"
+﻿<Window x:Class="WPF_ImageProcessing.DrawingWindows.DrawingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="DrawingWindows" Height="1024" Width="1024" Loaded="LoadWindows">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top" Width="1024">
-            <MenuItem Header="File">
+    <DockPanel Background="Green" IsHitTestVisible="True">
+        <Menu Panel.ZIndex="10" DockPanel.Dock="Top" Background="White" VerticalAlignment="Top" HorizontalContentAlignment="Stretch">
+            <MenuItem Header="File" VerticalAlignment="Top">
                 <MenuItem Header="Open"/>
                 <MenuItem Header="Close"/>
                 <MenuItem Header="Save"/>
@@ -22,6 +22,6 @@
                 <MenuItem Header="Others"/>
             </MenuItem>
         </Menu>
-        <Canvas x:Name="_canvas" DockPanel.Dock="Bottom" Background="White" MouseDown="ClickOnCanvas" MouseMove="ClickMoveCanvas" MouseUp="ClickUpCanvas"></Canvas>
+        <Canvas x:Name="_canvas" Background="White" MouseMove="ClickMoveCanvas" MouseUp="ClickUpCanvas" MouseDown="ClickDownCanvas" HorizontalAlignment="Stretch" Margin="0,0,0,0"/>
     </DockPanel>
 </Window>

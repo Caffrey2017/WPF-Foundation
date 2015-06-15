@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,7 +58,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrawingWindows.xaml">
+    <Page Include="DrawingWindows\DrawingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,9 +73,17 @@
     <Compile Include="DragControls.xaml.cs">
       <DependentUpon>DragControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrawingWindows.xaml.cs">
-      <DependentUpon>DrawingWindows.xaml</DependentUpon>
+    <Compile Include="DrawingWindows\Drawing\DrawingAction.cs" />
+    <Compile Include="DrawingWindows\DrawingWindow.xaml.cs">
+      <DependentUpon>DrawingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawingWindows\Drawing\DrawingCommand\DrawingCommander.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingCommand\IDrawingCommand.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingCommand\NoCommand.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingCommand\PencilCommand.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingControl.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingModel.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingTools.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -88,6 +97,7 @@
     <Compile Include="MergeForm.xaml.cs">
       <DependentUpon>MergeForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawingWindows\ModifiablePicture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

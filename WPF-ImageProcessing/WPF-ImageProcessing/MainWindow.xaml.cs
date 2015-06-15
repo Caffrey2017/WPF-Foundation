@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WPF_ImageProcessing.DrawingWindows;
 using System.IO;
 using System.Reflection;
 
@@ -224,7 +224,7 @@ namespace WPF_ImageProcessing
 
         private void DrawngImage(object sender, RoutedEventArgs e)
         {
-            DrawingWindows drags = new DrawingWindows();
+            DrawingWindow drags = new DrawingWindow();
             drags.Show();
             this.Close();
         }

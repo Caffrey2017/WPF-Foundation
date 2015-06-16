@@ -68,6 +68,21 @@ namespace WPF_ImageProcessing
             string fileName = "\\pic.png";
             string location = Environment.CurrentDirectory;
             SaveUsingEncoder(displayImage, location + fileName, new PngBitmapEncoder());
+            CreateThumbnail(location + "\\test.png", wBitmap);
+        }
+
+        void CreateThumbnail(string filename, BitmapSource image5)
+        {
+            if (filename != string.Empty)
+            {
+                using (FileStream stream5 = new FileStream(filename, FileMode.Create))
+                {
+                    PngBitmapEncoder encoder5 = new PngBitmapEncoder();
+                    encoder5.Frames.Add(BitmapFrame.Create(image5));
+                    encoder5.Save(stream5);
+                    stream5.Close();
+                }
+            }
         }
 
         void SaveUsingEncoder(FrameworkElement visual, string fileName, BitmapEncoder encoder)

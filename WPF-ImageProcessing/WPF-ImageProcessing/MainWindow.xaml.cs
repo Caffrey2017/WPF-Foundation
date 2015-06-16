@@ -45,7 +45,9 @@ namespace WPF_ImageProcessing
             string location = AppDomain.CurrentDomain.BaseDirectory + "/images/test.jpg"; //open.FileName;
             bitmap = new BitmapImage(new Uri(location));
             wBitmap = new WriteableBitmap(bitmap);
-            displayImage.Source = bitmap;
+            Image image = new Image();
+            image.Source = bitmap;            
+            displayImage.Children.Add(image);
         }
 
         private void OpenImage(object sender, RoutedEventArgs e)
@@ -58,12 +60,27 @@ namespace WPF_ImageProcessing
                 return;
             bitmap = new BitmapImage(new Uri(location));
             wBitmap = new WriteableBitmap(bitmap);
-            displayImage.Source = bitmap;
+            displayImage.Background = new ImageBrush(bitmap);
         }
 
         private void SaveImage(object sender, RoutedEventArgs e)
         {
+            string fileName = "\\pic.png";
+            string location = Environment.CurrentDirectory;
+            SaveUsingEncoder(displayImage, location + fileName, new PngBitmapEncoder());
+        }
 
+        void SaveUsingEncoder(FrameworkElement visual, string fileName, BitmapEncoder encoder)
+        {
+            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            bitmap.Render(visual);
+            BitmapFrame frame = BitmapFrame.Create(bitmap);
+            encoder.Frames.Add(frame);
+
+            using (var stream = File.Create(fileName))
+            {
+                encoder.Save(stream);
+            }
         }
 
         private void GrayImage(object sender, RoutedEventArgs e)
@@ -107,7 +124,7 @@ namespace WPF_ImageProcessing
             });
 
             wBitmap.WritePixels(new Int32Rect(0, 0, width, height), pixel, stride, 0);
-            displayImage.Source = wBitmap;
+            displayImage.Background = new ImageBrush(wBitmap);
         }
 
         private void InvertedImage(object sender, RoutedEventArgs e)
@@ -144,7 +161,7 @@ namespace WPF_ImageProcessing
             int writeCount = Environment.TickCount;
             Console.WriteLine("tick :{0}", writeCount - computeCount);
 
-            displayImage.Source = wBitmap;
+            displayImage.Background = new ImageBrush(wBitmap);
         }
 
         private void MediumImage(object sender, RoutedEventArgs e)
@@ -205,7 +222,7 @@ namespace WPF_ImageProcessing
             int writeCount = Environment.TickCount;
             Console.WriteLine("tick :{0}", writeCount - computeCount);
 
-            displayImage.Source = wBitmap;
+            displayImage.Background = new ImageBrush(wBitmap);
         }
 
         private void MergeImage(object sender, RoutedEventArgs e)

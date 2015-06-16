@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="550" Loaded="Window_Loaded">
-    <DockPanel >
-        <ToolBarTray DockPanel.Dock="Top">
+    <DockPanel>
+        <ToolBarTray  Panel.ZIndex= "10" DockPanel.Dock="Top">
             <ToolBar>
                 <Button Content="Open" Click="OpenImage" />
                 <Button Content="Save" Click="SaveImage"/>
@@ -19,6 +19,6 @@
                 <Button Content="DrawingMode" Click="DrawngImage"/>
             </ToolBar>
          </ToolBarTray>
-        <Image  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Name="displayImage"></Image>
+        <Canvas Panel.ZIndex="15" DockPanel.Dock="Bottom" Name="displayImage" Background="White"/>
     </DockPanel>
 </Window>

@@ -77,11 +77,10 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
             if (_Clicked == false || _mode == DrawingTools.None)
                 return;
            // Console.WriteLine("Move at {0:F} {1:F}", x, y);
-            _drawingControl.ClearAll();
+            Refresh();
             _movePoint = new Point(x, y);
             DrawingAction act = MakeAction(this._mode, _firstPoint, _movePoint);
             Draw(act);
-            Refresh();
             //State.Move(_firstPoint,_movePoint)
         }
 
@@ -111,6 +110,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
 
         public void Refresh()
         {
+            _drawingControl.ClearAll();
             if(_drawingActions.Count > 0)
                 foreach (DrawingAction act in _drawingActions)
                     Draw(act);

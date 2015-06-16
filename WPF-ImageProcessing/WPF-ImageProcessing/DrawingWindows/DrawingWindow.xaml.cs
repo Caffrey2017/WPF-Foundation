@@ -51,20 +51,23 @@ namespace WPF_ImageProcessing.DrawingWindows
         private void ClickDownCanvas(object sender, MouseButtonEventArgs e)
         {
             //_drawingModel.SetPointDown(e.GetPosition(sender as IInputElement));
-            Point pointDown =  e.GetPosition(sender as IInputElement);
+            Point pointDown = e.GetPosition(sender as IInputElement);
+            //Point pointDown = e.GetPosition(this._canvas);
             if (testingPencilMode)
             {
                 testingStartPoint = e.GetPosition(sender as IInputElement);
                 testingFirstClick = true;
             }
             _drawingModel.SetPointDown(pointDown.X, pointDown.Y);
-            Console.WriteLine("Down at {0:F} {1:F}", pointDown.X, pointDown.Y);
+            ((UIElement)e.Source).CaptureMouse();//校正
+            //Console.WriteLine("Down at {0:F} {1:F}", pointDown.X, pointDown.Y);
         }
 
         private void ClickMoveCanvas(object sender, MouseEventArgs e)
         {
             //_drawingModel.SetPointMove(e.GetPosition(sender as IInputElement));
             Point pointMove = e.GetPosition(sender as IInputElement);
+            //Point pointMove = e.GetPosition(this._canvas);
             if(testingFirstClick)
             {
                 Point testingNowPoint = e.GetPosition(sender as IInputElement);
@@ -84,9 +87,11 @@ namespace WPF_ImageProcessing.DrawingWindows
         {
             //_drawingModel.SetPointUp(e.GetPosition(sender as IInputElement));
             testingFirstClick = false;
+            //Point pointUp = e.GetPosition(this._canvas);
             Point pointUp = e.GetPosition(sender as IInputElement);
             _drawingModel.SetPointUp(pointUp.X, pointUp.Y);
             //Console.WriteLine("Up at {0:F} {1:F}", pointUp.X, pointUp.Y);
+            ((UIElement)e.Source).ReleaseMouseCapture();//校正
         }
 
         private void TestingLoadPicture(object sender, RoutedEventArgs e)
@@ -112,6 +117,16 @@ namespace WPF_ImageProcessing.DrawingWindows
 
             image.Source = mPic.SourceBitmap;
             _canvas.Children.Add(image);
+        }
+
+        private void Redo(object sender, RoutedEventArgs e)
+        {
+            _drawingModel.Redo();
+        }
+
+        private void Undo(object sender, RoutedEventArgs e)
+        {
+            _drawingModel.Undo();
         }
     }
 }

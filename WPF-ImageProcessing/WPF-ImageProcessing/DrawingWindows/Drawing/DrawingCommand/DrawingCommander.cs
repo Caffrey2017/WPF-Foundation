@@ -21,6 +21,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
 
         public void Execute(IDrawingCommand command)
         {
+            _redoCommands.Clear();
             _undoCommands.Push(command);
             command.Execute();
         }

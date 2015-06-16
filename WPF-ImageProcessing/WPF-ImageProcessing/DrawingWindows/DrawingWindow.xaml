@@ -10,8 +10,8 @@
                 <MenuItem Header="Save"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem x:Name="_redo" Header="Redo"/>
-                <MenuItem x:Name="_undo" Header="Undo"/>
+                <MenuItem x:Name="_redo" Header="Redo" Click="Redo"/>
+                <MenuItem x:Name="_undo" Header="Undo" Click="Undo"/>
             </MenuItem>
             <MenuItem Header="Tools">
                 <MenuItem Header="Pencil" Click="DrawByPencil" />
@@ -22,6 +22,6 @@
                 <MenuItem Header="Others"/>
             </MenuItem>
         </Menu>
-        <Canvas x:Name="_canvas" Background="White" MouseMove="ClickMoveCanvas" MouseUp="ClickUpCanvas" MouseDown="ClickDownCanvas" HorizontalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Canvas x:Name="_canvas" Background="White" HorizontalAlignment="Stretch" Margin="0,0,0,0" IsHitTestVisible="True" MouseDown="ClickDownCanvas" MouseMove="ClickMoveCanvas" MouseUp="ClickUpCanvas"/>
     </DockPanel>
 </Window>

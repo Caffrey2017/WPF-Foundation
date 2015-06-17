@@ -83,6 +83,9 @@
     <Compile Include="DrawingWindows\Drawing\DrawingCommand\PencilCommand.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingControl.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingModel.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingState\DrawingStateController.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingState\BaseDrawingState.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingState\PencilState.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingTools.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

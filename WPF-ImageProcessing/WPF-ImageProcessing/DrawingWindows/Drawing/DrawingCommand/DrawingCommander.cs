@@ -11,6 +11,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
         private Stack<IDrawingCommand> _undoCommands;
         private Stack<IDrawingCommand> _redoCommands;
         private DrawingModel _model;
+        private bool _temporary;
 
         public DrawingCommander(DrawingModel model)
         {
@@ -20,6 +21,19 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
         }
 
         public void Execute(IDrawingCommand command)
+        {
+            if (command.IsTemporary)
+                DoTemporary(command);
+            else
+                DoGeneral(command);
+        }
+
+        private void DoTemporary(IDrawingCommand command) //MoveAction
+        {
+            command.Execute();
+        }
+
+        private void DoGeneral(IDrawingCommand command) //UpAction
         {
             _redoCommands.Clear();
             _undoCommands.Push(command);

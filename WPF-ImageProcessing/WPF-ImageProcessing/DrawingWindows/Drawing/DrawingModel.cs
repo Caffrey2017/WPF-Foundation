@@ -69,7 +69,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
         {
             _firstPoint = new Point(x, y);
             _Clicked = true;
-            //State.Down(_firstPoint);
+            //State.PointDown(_firstPoint);
         }
 
         public void SetPointMove(double x, double y)
@@ -81,7 +81,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
             _movePoint = new Point(x, y);
             DrawingAction act = MakeAction(this._mode, _firstPoint, _movePoint);
             Draw(act);
-            //State.Move(_firstPoint,_movePoint)
+            //State.PointMove(_firstPoint,_movePoint)
         }
 
         public void SetPointUp(double x, double y)
@@ -91,6 +91,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
             DrawingAction act = MakeAction(this._mode, _firstPoint, _finalPoint);
             EnterCommander(act.Mode, act);
             Refresh();
+            //State.PointUp(_firstPoint,_movePoint)
         }
 
         private DrawingAction MakeAction(DrawingTools mode,Point leftTop,Point rightBottom)
@@ -119,17 +120,20 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing
         public void Undo()
         {
             _commander.Undo();
+            //State.Undo();
         }
 
         public void Redo()
         {
             _commander.Redo();
+            //State.Redo();
         }
 
-        private void Draw(DrawingAction act)
+        public void Draw(DrawingAction act)//TemporaryDrawing
         {
             if (act.Mode == DrawingTools.Pencil)
                 _drawingControl.DrawLine(act.LeftTop.X, act.LeftTop.Y, act.RightBottom.X, act.RightBottom.Y);
+            //State.Draw();
         }
 
         public void TakeOfAction(DrawingAction act)

@@ -10,5 +10,6 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
     {
         void Execute();
         void Undo();
+        bool IsTemporary { get; private set; }
     }
 }

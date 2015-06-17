@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
 {
-    public class PencilCommand : IDrawingCommand
+    public class PencilCommand : BaseDrawingCommand
     {
         DrawingModel _model;
         DrawingAction _action;
-        bool _temporary = false;
-        public bool IsTemporary { get { return _temporary; } private set; }
 
         public PencilCommand(DrawingModel model,DrawingAction action)
         {
@@ -19,7 +17,7 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
             _action = action;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             if (IsTemporary)
                 DoTemporary();
@@ -40,15 +38,10 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
         }
 
 
-        public void Undo()
+        public override void Undo()
         {
             _model.TakeOfAction(_action);
             _model.Refresh();
-        }
-        
-        public void SetTemporary(bool enable)
-        {
-            _temporary = enable;
         }
     }
 }

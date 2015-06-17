@@ -8,19 +8,19 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
 {
     public class DrawingCommander
     {
-        private Stack<IDrawingCommand> _undoCommands;
-        private Stack<IDrawingCommand> _redoCommands;
+        private Stack<BaseDrawingCommand> _undoCommands;
+        private Stack<BaseDrawingCommand> _redoCommands;
         private DrawingModel _model;
         private bool _temporary;
 
         public DrawingCommander(DrawingModel model)
         {
             _model = model;
-            _undoCommands = new Stack<IDrawingCommand>();
-            _redoCommands = new Stack<IDrawingCommand>();
+            _undoCommands = new Stack<BaseDrawingCommand>();
+            _redoCommands = new Stack<BaseDrawingCommand>();
         }
 
-        public void Execute(IDrawingCommand command)
+        public void Execute(BaseDrawingCommand command)
         {
             if (command.IsTemporary)
                 DoTemporary(command);
@@ -28,12 +28,12 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
                 DoGeneral(command);
         }
 
-        private void DoTemporary(IDrawingCommand command) //MoveAction
+        private void DoTemporary(BaseDrawingCommand command) //MoveAction
         {
             command.Execute();
         }
 
-        private void DoGeneral(IDrawingCommand command) //UpAction
+        private void DoGeneral(BaseDrawingCommand command) //UpAction
         {
             _redoCommands.Clear();
             _undoCommands.Push(command);
@@ -42,14 +42,14 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
 
         public void Undo()
         {
-            IDrawingCommand command = _undoCommands.Pop();
+            BaseDrawingCommand command = _undoCommands.Pop();
             command.Undo();
             _redoCommands.Push(command);
         }
 
         public void Redo()
         {
-            IDrawingCommand command = _redoCommands.Pop();
+            BaseDrawingCommand command = _redoCommands.Pop();
             command.Execute();
             _undoCommands.Push(command);
         }

@@ -10,22 +10,25 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingState
 {
     public class PencilState : BaseDrawingState
     {
-        public PencilState(DrawingCommander drawingCommander)
-            : base(drawingCommander)
+        public PencilState(DrawingModel model,DrawingCommander drawingCommander)
+            : base(model,drawingCommander)
         {
+            _mode = DrawingTools.Pencil;
         }
 
-        public override void PointMove(Point pt)
+        protected override void PointMoveHook()
         {
-            base.PointMove(pt);
-            IDrawingCommand command = new PencilCommand();
+            DrawingAction action = _model.MakeAction(_mode, _firstPoint, _movePoint);
+            BaseDrawingCommand command = new PencilCommand(_model, action);
             command.SetTemporary(true);
             _commander.Execute(command);
         }
 
-        public override void PointUp(Point pt)
+        protected override void PointUpHook()
         {
-            base.PointUp(pt);
+            DrawingAction action = _model.MakeAction(_mode, _firstPoint, _lastPoint);
+            BaseDrawingCommand command = new PencilCommand(_model, action);
+            _commander.Execute(command);
         }
     }
 }

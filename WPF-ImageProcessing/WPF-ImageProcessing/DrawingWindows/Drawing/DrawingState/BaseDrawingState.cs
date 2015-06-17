@@ -13,14 +13,42 @@ namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingState
         protected Point _firstPoint;
         protected Point _movePoint;
         protected Point _lastPoint;
-        protected DrawingCommander _commander; //
+        protected DrawingCommander _commander;
+        protected DrawingModel _model;
+        protected DrawingTools _mode;
+        protected bool _clicked = false;
 
-        public BaseDrawingState(DrawingCommander commander)
+        public BaseDrawingState(DrawingModel model,DrawingCommander commander)
         {
+            _model = model;
             _commander = commander;
         }
-        public virtual void PointDown(Point pt) { _firstPoint = pt; }
-        public virtual void PointMove(Point pt) { _movePoint = pt; }
-        public virtual void PointUp(Point pt) { _lastPoint = pt; }
+
+        public void PointDown(Point pt) 
+        {
+            _clicked = true;  
+            _firstPoint = pt;
+            PointDownHook();
+        }
+
+        protected virtual void PointDownHook() { }
+
+        public void PointMove(Point pt) 
+        {
+            if (!_clicked)
+                return;
+            _movePoint = pt;
+            PointMoveHook();
+        }
+        protected virtual void PointMoveHook() { }
+
+        public void PointUp(Point pt) 
+        { 
+            _clicked = false; 
+            _lastPoint = pt;
+            PointUpHook();
+        }
+        protected virtual void PointUpHook() { }
+
     }
 }

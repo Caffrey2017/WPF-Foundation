@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace WPF_ImageProcessing.DrawingWindows.Drawing.DrawingCommand
 {
-    public class NoCommand : IDrawingCommand
+    public class NoCommand : BaseDrawingCommand
     {
-        public void Execute() { }
-        public void Undo() { }
-        public bool IsTemporary { get; private set; }
-        public void SetTemporary(bool enable);
+        public override void Execute() { }
+        public override void Undo() { }
     }
 
 }

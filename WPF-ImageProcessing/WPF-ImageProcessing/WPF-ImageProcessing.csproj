@@ -78,13 +78,14 @@
       <DependentUpon>DrawingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrawingWindows\Drawing\DrawingCommand\DrawingCommander.cs" />
-    <Compile Include="DrawingWindows\Drawing\DrawingCommand\IDrawingCommand.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingCommand\BaseDrawingCommand.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingCommand\NoCommand.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingCommand\PencilCommand.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingControl.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingModel.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingState\DrawingStateController.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingState\BaseDrawingState.cs" />
+    <Compile Include="DrawingWindows\Drawing\DrawingState\NoState.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingState\PencilState.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingTools.cs" />
     <Compile Include="MainWindow.xaml.cs">

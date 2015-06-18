@@ -28,12 +28,14 @@ namespace WPF_ImageProcessing
     {
         DispatcherTimer timer;
         Capture capture;
-        HaarCascade haarCascade;
+        //HaarCascade haarCascade;
+        CascadeClassifier cascade;
         public OpenCVWindows()
         {
             InitializeComponent();
             capture = new Capture();
-            haarCascade = new HaarCascade(Environment.CurrentDirectory + "\\faceXML\\haarcascade_frontalface_default.xml");
+            //haarCascade = new HaarCascade(Environment.CurrentDirectory + "\\faceXML\\haarcascade_frontalface_default.xml");
+            cascade = new CascadeClassifier(Environment.CurrentDirectory + "\\faceXML\\haarcascade_frontalface_default.xml");
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -48,14 +50,17 @@ namespace WPF_ImageProcessing
             {
                 Image<Gray, Byte> grayFrame = currentFrame.Convert<Gray, Byte>();
 
-                var detectedFaces = grayFrame.DetectHaarCascade(haarCascade)[0];
+                //var detectedFaces = grayFrame.DetectHaarCascade(haarCascade)[0];
+                var detectedFaces = cascade.DetectMultiScale(grayFrame, 1.1, 0, new System.Drawing.Size(100, 100), new System.Drawing.Size(800, 800));
 
                 foreach (var face in detectedFaces)
-                    currentFrame.Draw(face.rect, new Bgr(0, double.MaxValue, 0), 3);
+                    currentFrame.Draw(face, new Bgr(0, double.MaxValue, 0), 3);
                 var image = new System.Windows.Controls.Image();
                 image.Source = ToBitmapSource(currentFrame);
-                image.Stretch = Stretch.Fill;
-                image.StretchDirection = StretchDirection.DownOnly;
+                image.Stretch = Stretch.UniformToFill;
+                image.StretchDirection = StretchDirection.Both;
+                image.Width = canvas.ActualWidth;
+                image.Height = canvas.ActualHeight;
                 canvas.Children.Add(image);
                 this.Title = string.Format("{0:F} x {1:F}", canvas.ActualWidth, canvas.ActualHeight);
             }

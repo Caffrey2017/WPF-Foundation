@@ -18,7 +18,10 @@
                 <Button Content="DragMode" Click="DragImage"/>
                 <Button Content="DrawingMode" Click="DrawngImage"/>
             </ToolBar>
-         </ToolBarTray>
+            <ToolBar>
+                <Button Content="OpenCV" Click="OpenCVMode"/>
+            </ToolBar>
+        </ToolBarTray>
         <Canvas Panel.ZIndex="15" DockPanel.Dock="Bottom" Name="displayImage" Background="White"/>
     </DockPanel>
 </Window>

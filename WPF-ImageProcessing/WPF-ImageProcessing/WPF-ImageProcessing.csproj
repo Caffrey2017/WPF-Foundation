@@ -58,11 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CamShift\CamShiftWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DragControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DrawingWindows\DrawingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HandGeasture\HandGeastureWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,6 +82,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CamShift\CamShiftWindows.xaml.cs">
+      <DependentUpon>CamShiftWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CamShift\EmguImageExtensions.cs" />
+    <Compile Include="CamShift\ImageExtensions.cs" />
+    <Compile Include="CamShift\ObjectTracking.cs" />
     <Compile Include="DragControls.xaml.cs">
       <DependentUpon>DragControls.xaml</DependentUpon>
     </Compile>
@@ -88,11 +102,23 @@
     <Compile Include="DrawingWindows\Drawing\DrawingControl.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingModel.cs" />
     <Compile Include="DrawingWindows\Drawing\DrawingTools.cs" />
+    <Compile Include="HandGeasture\CustomGeasture.cs" />
+    <Compile Include="HandGeasture\Detector\CustomYCrCbSkinDetector.cs" />
+    <Compile Include="HandGeasture\HandGeastureWindows.xaml.cs">
+      <DependentUpon>HandGeastureWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HandGeasture\Detector\HsvSkinDetector.cs" />
+    <Compile Include="HandGeasture\Detector\IColorSkinDetector.cs" />
+    <Compile Include="HandGeasture\Detector\YCrCbSkinDetector.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MergeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FaceDetection\FaceDetectionWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +132,9 @@
       <DependentUpon>MergeForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrawingWindows\ModifiablePicture.cs" />
+    <Compile Include="FaceDetection\FaceDetectionWindows.xaml.cs">
+      <DependentUpon>FaceDetectionWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenCVWindows.xaml.cs">
       <DependentUpon>OpenCVWindows.xaml</DependentUpon>
     </Compile>

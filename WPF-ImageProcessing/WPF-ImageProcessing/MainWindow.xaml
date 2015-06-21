@@ -1,7 +1,7 @@
 ﻿<Window x:Name="main" x:Class="WPF_ImageProcessing.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="550" Loaded="Window_Loaded">
+        Title="MainWindow" Height="350" Width="620" Loaded="Window_Loaded">
     <DockPanel>
         <ToolBarTray  Panel.ZIndex= "10" DockPanel.Dock="Top">
             <ToolBar>

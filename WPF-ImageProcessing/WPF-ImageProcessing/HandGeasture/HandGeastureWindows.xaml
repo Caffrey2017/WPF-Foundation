@@ -1,0 +1,10 @@
+﻿<Window x:Class="WPF_ImageProcessing.HandGeasture.HandGeastureWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HandGeastureWindows" Height="535.324" Width="842.288">
+    <Grid>
+        <Image x:Name="imageBoxSkin" HorizontalAlignment="Left" Height="425" Margin="31,53,0,0" VerticalAlignment="Top" Width="367"/>
+        <Image x:Name="imageBoxFrameGrabber" HorizontalAlignment="Left" Height="425" Margin="422,53,0,0" VerticalAlignment="Top" Width="367"/>
+
+    </Grid>
+</Window>
